@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.0.6'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+description = 'HN_K24_CNTT3_DOHONGKY_005'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 1. Thư viện Web RESTful API
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 2. Thư viện Validation (Sửa lỗi validation bị đỏ)
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // 3. Thư viện JPA kết nối Cơ sở dữ liệu
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // TRÁNH VIẾT LIỀN: Dòng này phải đứng độc lập trên một hàng riêng biệt
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // 4. Thư viện Thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // 5. Thư viện Lombok hỗ trợ Getter/Setter tự động
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Cấu hình môi trường Phát triển & Kiểm thử (Test)
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
